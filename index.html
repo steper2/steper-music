@@ -3,60 +3,66 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Music Link Vault — Card Edition</title>
-  <meta name="description" content="카테고리별로 정리된 음악 링크 — 카드형 + 추가/검색/동기화" />
+  <title>steper music house</title>
+  <meta name="description" content="카테고리별 음악 링크 — steper music house" />
   <meta name="theme-color" content="#0b0e14" />
   <style>
-    :root{--bg:#0b0e14;--panel:#0f1520;--card:#111725;--border:#26324a;--text:#e6eaf3;--muted:#9aa7bd;--accent:#60a5fa}
-    :root[data-theme="light"]{--bg:#f6f9fc;--panel:#ffffff;--card:#ffffff;--border:#e5e9f2;--text:#0f172a;--muted:#5a6473}
+    :root{ --bg:#0a0f1c; --panel:rgba(14,20,34,.7); --card:rgba(18,24,40,.75);
+           --border:#24314b; --text:#e7ecf7; --muted:#9fb0c8; --accent:#86b7ff; --accent-2:#7dd3fc; }
+    :root[data-theme="light"]{ --bg:#f6f9ff; --panel:rgba(255,255,255,.75); --card:#ffffff;
+           --border:#e6ecf5; --text:#0f172a; --muted:#5a6473; --accent:#2563eb; --accent-2:#0891b2; }
     *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,sans-serif}
-    a{color:var(--accent);text-decoration:none}
-    .header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg, rgba(12,18,30,.98), rgba(12,18,30,.92));border-bottom:1px solid var(--border)}
-    :root[data-theme="light"] .header{background:linear-gradient(180deg,#fff,#f7fafc)}
-    .wrap{max-width:1100px;margin:0 auto;padding:12px 14px}
-    .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    body{ margin:0; background:radial-gradient(1200px 800px at 20% -10%, rgba(99,102,241,.12), transparent 60%),
+                        radial-gradient(1000px 600px at 100% 0%, rgba(56,189,248,.10), transparent 50%), var(--bg);
+          color:var(--text); font:15px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,sans-serif; }
+    a{color:var(--accent); text-decoration:none}
+    .header{position:sticky; top:0; z-index:30; backdrop-filter:blur(8px);
+             background:linear-gradient(180deg, rgba(10,15,28,.9), rgba(10,15,28,.6)); border-bottom:1px solid var(--border)}
+    :root[data-theme="light"] .header{background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6))}
+    .wrap{max-width:1200px; margin:0 auto; padding:14px 18px}
+    .row{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
     .grow{flex:1}
-    .brand{display:flex;align-items:center;gap:8px}
-    .brand .logo{font-size:22px}
-    .brand h1{font-size:18px;margin:0}
-    .toolbar{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{border:1px solid var(--border);background:var(--panel);color:var(--text);padding:6px 10px;border-radius:999px;cursor:pointer}
-    .chip.active{border-color:var(--accent);color:var(--accent)}
-    .controls{display:flex;gap:8px;flex-wrap:wrap}
-    .controls input,.controls button, .controls select{background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
-    .controls button.primary{background:var(--accent);color:#0b0e14;border-color:transparent;font-weight:600}
-    main{max-width:1100px;margin:18px auto;padding:0 14px;display:grid;gap:14px}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:0 10px 26px rgba(0,0,0,.25)}
-    .list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .brand{display:flex; align-items:center; gap:10px}
+    .brand img.logo{height:40px; width:auto; border-radius:10px; box-shadow:0 8px 22px rgba(0,0,0,.25)}
+    .brand h1{font-size:22px; margin:0}
+    .toolbar{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{border:1px solid var(--border); background:var(--panel); color:var(--text); padding:8px 14px; border-radius:999px; cursor:pointer}
+    .chip.active, .chip:hover{border-color:var(--accent); color:var(--accent)}
+    .controls{display:flex; gap:10px; flex-wrap:wrap}
+    .controls input, .controls button, .controls select{background:var(--panel); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:10px 12px}
+    .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b0e14; border:0; font-weight:700}
+    main{max-width:1200px; margin:22px auto; padding:0 18px; display:grid; gap:18px}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow:0 12px 32px rgba(0,0,0,.28)}
+    .list{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px}
     @media (max-width:1100px){.list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media (max-width:700px){.list{grid-template-columns:1fr}}
-    .tile{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--panel);display:flex;flex-direction:column}
-    .thumb{position:relative;padding-top:56%;background:#0b0e14}
-    .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .tile .body{padding:10px;display:flex;flex-direction:column;gap:8px}
-    .tile h3{margin:0;font-size:15px;line-height:1.4}
-    .tile .meta{display:flex;gap:8px;flex-wrap:wrap}
-    .pill{display:inline-block;padding:2px 8px;border:1px solid var(--border);border-radius:999px;font-size:12px}
+    @media (max-width:720px){.list{grid-template-columns:1fr}}
+    .tile{border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--panel); display:flex; flex-direction:column}
+    .thumb{position:relative; padding-top:56%; background:#0b0e14}
+    .thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+    .tile .body{padding:12px; display:flex; flex-direction:column; gap:10px}
+    .tile h3{margin:0; font-size:16px; line-height:1.45}
     .muted{color:var(--muted)}
-    .actions{display:flex;gap:8px;margin-top:auto}
-    .btn{background:transparent;border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:10px;cursor:pointer}
-    .btn:hover{border-color:var(--accent)}
-    .footer{border-top:1px solid var(--border);text-align:center;padding:16px;color:var(--muted)}
-    dialog{border:1px solid var(--border);border-radius:12px;background:var(--panel);color:var(--text);max-width:720px;width:92%}
+    .pill{display:inline-block; padding:4px 10px; border:1px solid var(--border); border-radius:999px; font-size:12px}
+    .actions{margin-top:auto; display:flex; gap:10px}
+    .btn-open{flex:1; text-align:center; font-weight:800; letter-spacing:.5px; padding:12px 14px; font-size:15px;
+               background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0a0f1c; border:0; border-radius:12px; cursor:pointer}
+    .btn-outline{padding:10px 12px; border:1px solid var(--border); border-radius:12px; background:transparent; color:var(--text); cursor:pointer}
+    .btn-outline:hover{border-color:var(--accent)}
+    .footer{border-top:1px solid var(--border); text-align:center; padding:16px; color:var(--muted)}
+    dialog{border:1px solid var(--border); border-radius:14px; background:var(--card); color:var(--text); max-width:720px; width:92%}
     dialog::backdrop{background:rgba(0,0,0,.5)}
-    .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .modal-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
+    .grid2{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
     @media (max-width:800px){.grid2{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <header class="header">
     <div class="wrap row">
-      <div class="brand">
-        <span class="logo">🎵</span>
-        <h1>Music Link Vault</h1>
-      </div>
+      <a class="brand" href="./" title="홈으로">
+        <img class="logo" src="images/logo.jpeg" alt="steper music house logo" />
+        <h1>steper music house</h1>
+      </a>
       <div class="toolbar grow" id="catBar"></div>
       <div class="controls">
         <input id="q" placeholder="검색: 제목/아티스트/태그/메모 ( / )" />
@@ -66,35 +72,33 @@
           <option value="titleAsc">제목 A→Z</option>
           <option value="titleDesc">제목 Z→A</option>
         </select>
-        <button id="theme" title="테마 전환">🌓</button>
-        <button id="sync" class="primary">원격 동기화</button>
-        <button id="addBtn" class="primary">추가</button>
+        <button id="theme" title="테마 전환" class="btn-outline">🌓</button>
+        <button id="addBtn" class="btn-primary">추가</button>
       </div>
     </div>
   </header>
 
   <main>
     <section class="card">
-      <div class="row" style="justify-content:space-between;align-items:center">
-        <h2>리스트</h2>
-        <div class="row" style="gap:8px;flex-wrap:wrap">
+      <div class="row" style="justify-content:space-between; align-items:center">
+        <h2 style="margin:0">리스트</h2>
+        <div class="row" style="gap:10px; flex-wrap:wrap">
           <input id="tagFilter" placeholder="#태그 필터 (쉼표/스페이스)" />
-          <button id="exportJSON" class="btn">JSON 내보내기</button>
-          <label class="btn"><input type="file" id="importJSON" accept="application/json" hidden> JSON 미리보기</label>
+          <button id="exportJSON" class="btn-outline">JSON 내보내기</button>
         </div>
       </div>
-      <div id="empty" class="muted">아직 항목이 없습니다. <b>원격 동기화</b>로 리포의 <code>data/seed.json</code>을 가져오거나, 상단의 <b>추가</b> 버튼으로 시작하세요.</div>
+      <div id="empty" class="muted" style="padding:8px 2px">아직 항목이 없습니다. 상단의 <b>추가</b> 버튼을 눌러 시작하세요.</div>
       <div id="list" class="list"></div>
     </section>
   </main>
 
-  <footer class="footer">© 2025 Music Link Vault — Card Edition.</footer>
+  <footer class="footer">© 2025 steper music house</footer>
 
   <dialog id="editor">
     <form method="dialog" id="editForm">
       <div class="modal-head">
         <h3 id="editTitle">곡 추가</h3>
-        <button id="closeDlg" type="button" class="btn">✕</button>
+        <button id="closeDlg" type="button" class="btn-outline">✕</button>
       </div>
       <div class="grid2">
         <label>카테고리
@@ -116,34 +120,32 @@
         <label>태그 <input name="tags" placeholder="예: chill, oldschool, workout"></label>
         <label>메모 <input name="note" placeholder="짧은 코멘트"></label>
       </div>
-      <div class="row" style="justify-content:flex-end;margin-top:12px;gap:8px">
-        <button value="cancel" class="btn">취소</button>
-        <button class="primary btn" value="default">저장</button>
+      <div class="row" style="justify-content:flex-end; margin-top:12px; gap:8px">
+        <button value="cancel" class="btn-outline">취소</button>
+        <button class="btn-primary" value="default">저장</button>
       </div>
     </form>
   </dialog>
 
   <script>
-    const STORAGE_KEY = "music_card_local_v2";
+    const STORAGE_KEY = "steper_music_house_local_v2";
     const CATS = ["hiphop","kpop","citypop","jpop","thaipop","ins","breaking","jazz","rnb"];
     const $ = (s)=>document.querySelector(s);
     const $$= (s)=>Array.from(document.querySelectorAll(s));
     let state = {items:[], createdAt:0};
     let local = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"items": [], "createdAt": 0}');
-
+    function saveLocal(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(local)); }
     function esc(s=""){ return s.replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m])); }
     function escAttr(s=""){ return esc(s).replace(/\"/g,"&quot;"); }
     const p2 = (n)=> String(n).padStart(2,'0');
     function hDate(ts){ const d=new Date(ts); return `${d.getFullYear()}-${p2(d.getMonth()+1)}-${p2(d.getDate())}`; }
-    function saveLocal(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(local)); }
 
     function applyTheme(t){ document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
     applyTheme(localStorage.getItem('theme')||'dark');
     $('#theme').addEventListener('click', ()=> applyTheme((localStorage.getItem('theme')||'dark')==='dark'?'light':'dark'));
 
     function ytId(url){
-      try{
-        const u=new URL(url);
+      try{ const u=new URL(url);
         if(u.hostname.includes('youtu.be')) return u.pathname.slice(1);
         if(u.searchParams.get('v')) return u.searchParams.get('v');
         if(u.pathname.startsWith('/shorts/')) return u.pathname.split('/')[2];
@@ -176,7 +178,7 @@
     }
 
     function mergedItems(){
-      const map = new Map();
+      const map=new Map();
       for(const it of (state.items||[])) map.set(it.id, it);
       for(const it of (local.items||[])) map.set(it.id, it);
       return Array.from(map.values());
@@ -191,7 +193,7 @@
       const tfilter = ($('#tagFilter').value||'').toLowerCase().split(/[ ,#]+/).filter(Boolean);
       if(tfilter.length){ arr = arr.filter(x => tfilter.every(tf => (x.tags||[]).map(s=>s.toLowerCase()).includes(tf))); }
       sortItems(arr);
-      list.innerHTML=''; empty.style.display = arr.length? 'none':'block';
+      list.innerHTML=''; if(empty) empty.style.display = arr.length? 'none':'block';
       for(const it of arr){
         const th = ytThumb(it.url);
         const card = document.createElement('article'); card.className='tile';
@@ -199,17 +201,17 @@
           <div class="thumb">${th?`<img alt="thumb" loading="lazy" src="${th}">`:''}</div>
           <div class="body">
             <h3>${esc(it.title)}</h3>
-            <div class="meta muted">
+            <div class="muted" style="display:flex; gap:8px; flex-wrap:wrap">
               <span class="pill">${esc(it.category)}</span>
               ${it.artist?`<span class="pill">${esc(it.artist)}</span>`:''}
               <span class="pill">${hDate(it.addedAt)}</span>
             </div>
             ${it.note?`<div class="muted">${esc(it.note)}</div>`:''}
-            <div class="meta">${(it.tags||[]).map(t=>`<span class="pill">#${esc(t)}</span>`).join(' ')}</div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap">${(it.tags||[]).map(t=>`<span class="pill">#${esc(t)}</span>`).join(' ')}</div>
             <div class="actions">
-              <button class="btn" data-open="${escAttr(it.url)}">열기</button>
-              <button class="btn" data-edit="${it.id}">편집</button>
-              <button class="btn" data-del="${it.id}">삭제</button>
+              <button class="btn-open" data-open="${escAttr(it.url)}">열기</button>
+              <button class="btn-outline" data-edit="${it.id}">편집</button>
+              <button class="btn-outline" data-del="${it.id}">삭제</button>
             </div>
           </div>`;
         list.appendChild(card);
@@ -219,45 +221,29 @@
     async function fetchRemote(){
       try{
         const res = await fetch('data/seed.json?ts='+Date.now(), {cache:'no-store'});
-        if(!res.ok) throw new Error('seed.json not found');
-        const incoming = await res.json();
-        if(!incoming || !Array.isArray(incoming.items)) throw new Error('bad schema');
-        state = incoming;
+        if(res.ok){
+          const incoming = await res.json();
+          if(incoming && Array.isArray(incoming.items)){ state = incoming; }
+        }
         renderList();
-        alert('원격 동기화 완료');
-      }catch(e){
-        if(state.items?.length){ alert('원격 오류, 이전 상태 유지'); }
-        else alert('원격 동기화 실패: data/seed.json 확인 필요');
-      }
+      }catch(e){ renderList(); }
     }
 
     document.addEventListener('keydown',(e)=>{ if(e.key==='/'){ e.preventDefault(); $('#q').focus(); }});
     $('#q').addEventListener('input', renderList);
     $('#tagFilter').addEventListener('input', renderList);
     $('#sort').addEventListener('change', renderList);
-
     document.addEventListener('click',(e)=>{
       const open = e.target.getAttribute('data-open');
       const eid  = e.target.getAttribute('data-edit');
       const del  = e.target.getAttribute('data-del');
       const cat  = e.target.closest('.chip')?.dataset.cat;
       if(open){ window.open(open,'_blank','noopener'); return; }
-      if(eid){
-        const it = mergedItems().find(x=>x.id===eid);
-        if(it) openEditor(it);
-        return;
-      }
-      if(del){
-        if(confirm('삭제할까요?')){
-          local.items = (local.items||[]).filter(x=>x.id!==del);
-          saveLocal(); renderList();
-        }
-        return;
-      }
+      if(eid){ const it = mergedItems().find(x=>x.id===eid); if(it) openEditor(it); return; }
+      if(del){ if(confirm('삭제할까요?')){ local.items = (local.items||[]).filter(x=>x.id!==del); saveLocal(); renderList(); } return; }
       if(cat!==undefined){ setActiveCat(cat); return; }
     });
 
-    // ===== Add/Edit dialog =====
     let editingId=null;
     function openEditor(item){
       editingId = item?.id || null;
@@ -288,13 +274,12 @@
         updatedAt: Date.now()
       };
       if(!item.title || !item.url){ alert('제목과 URL은 필수입니다.'); return; }
-      if(!CATS.includes(item.category)) item.category='hiphop';
       const idx = (local.items||[]).findIndex(x=>x.id===item.id);
       if(idx>=0) local.items[idx]=item; else (local.items||(local.items=[])).unshift(item);
       saveLocal(); $('#editor').close(); renderList();
     });
 
-    // ===== Export/Import =====
+    // Export
     $('#exportJSON').addEventListener('click', ()=>{
       const publish = { items: mergedItems(), createdAt: state.createdAt || Date.now() };
       const a=document.createElement('a');
@@ -303,13 +288,7 @@
       document.body.appendChild(a); a.click();
       setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },0);
     });
-    $('#importJSON').addEventListener('change',(e)=>{
-      const f=e.target.files[0]; if(!f) return; const r=new FileReader();
-      r.onload=()=>{ try{ const x=JSON.parse(r.result); if(!x||!Array.isArray(x.items)) throw 0; state=x; renderList(); alert('미리보기 로드 완료'); }catch{ alert('유효한 JSON 형식이 아닙니다.'); } };
-      r.readAsText(f);
-    });
 
-    // boot
     renderCatBar();
     fetchRemote();
   </script>
