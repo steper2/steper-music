@@ -1,0 +1,48 @@
+{
+  "items": [
+    {
+      "id": "3253b178-2490-40fc-aa9f-bd8c1ef12c4e",
+      "category": "hiphop",
+      "title": "It Was A Good Day",
+      "artist": "Ice Cube",
+      "url": "https://www.youtube.com/watch?v=h4UqMyldS7Q",
+      "tags": [
+        "oldschool",
+        "westcoast",
+        "chill"
+      ],
+      "note": "클래식 바이브",
+      "addedAt": 1762069376529,
+      "updatedAt": 1762069376529
+    },
+    {
+      "id": "e4320109-613c-4dca-9545-934acffab577",
+      "category": "citypop",
+      "title": "Plastic Love",
+      "artist": "竹内まりや (Mariya Takeuchi)",
+      "url": "https://www.youtube.com/watch?v=3bNITQR4Uso",
+      "tags": [
+        "citypop",
+        "jpop"
+      ],
+      "note": "",
+      "addedAt": 1762069376529,
+      "updatedAt": 1762069376529
+    },
+    {
+      "id": "67433c5a-8972-4e7e-b688-0165417c0f19",
+      "category": "rnb",
+      "title": "Best Part (feat. H.E.R.)",
+      "artist": "Daniel Caesar",
+      "url": "https://www.youtube.com/watch?v=vBy7FaapGRo",
+      "tags": [
+        "r&b",
+        "chill"
+      ],
+      "note": "",
+      "addedAt": 1762069376529,
+      "updatedAt": 1762069376529
+    }
+  ],
+  "createdAt": 1762069376529
+}
